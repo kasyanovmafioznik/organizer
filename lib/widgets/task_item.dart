@@ -37,7 +37,8 @@ class _TaskItemState extends State<TaskItem> {
     );
   }
 
-  void _editTask() {// метод для редактирования задачи
+  void _editTask() {
+    // метод для редактирования задачи
     String tempTitle = widget.task.title;
     String tempDescription = widget.task.description;
     DateTime tempDate = widget.task.date;
@@ -87,8 +88,10 @@ class _TaskItemState extends State<TaskItem> {
                       onPressed: () {
                         showDatePicker(
                           context: context,
-                          initialDate: widget.task.date,
-                          firstDate: DateTime.now(),
+                          initialDate: widget.task.date.isAfter(DateTime.now())
+                              ? widget.task.date
+                              : DateTime.now(),
+                          firstDate: DateTime.now(), 
                           lastDate: DateTime(2100),
                         ).then((selectedDate) {
                           if (selectedDate != null) {
@@ -133,7 +136,7 @@ class _TaskItemState extends State<TaskItem> {
               child: const Text('Отмена'),
             ),
             TextButton(
-              onPressed: (){
+              onPressed: () {
                 Navigator.pop(context);
               },
               child: const Text('Сохранить'),
