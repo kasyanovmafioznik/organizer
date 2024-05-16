@@ -134,6 +134,7 @@ class _TaskItemState extends State<TaskItem> {
             ),
             TextButton(
               onPressed: (){
+                Navigator.pop(context);
               },
               child: const Text('Сохранить'),
             ),
